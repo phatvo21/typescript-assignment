@@ -1,7 +1,7 @@
 import { MyArray } from "./barebone";
 import { myFunc } from "./arrow-function";
 import {testRequest} from "./error-handle";
-import {errorResponse, validator} from "./custom-response";
+import {hundredTimes} from "./cache-response";
 
 // Start testing Barebone class
 
@@ -20,11 +20,13 @@ numberAry.add(3);
 numberAry.remove(2);
 console.log(numberAry.getValues());
 
-// The application shouldn't be able to compiler, if uncomment those there snippet below.
+const booleanAry = new MyArray();
+booleanAry.add(true);
+booleanAry.add(false);
 
-// const booleanAry = new MyArray();
-// numberAry.add(true);
-// numberAry.add(false);
+const numberAndStringMixedAry = new MyArray();
+numberAndStringMixedAry.add(1);
+numberAndStringMixedAry.add('bbb');
 
 // End testing Barebone class
 
@@ -46,16 +48,15 @@ console.log('Result will include two cases, it is success and failure');
 console.log('we can using type in Typescript to makes this happen');
 console.log('Here is an example');
 console.log(testRequest('url.com'));
+console.log(testRequest('https://www.example.com'));
 
 // End testing Validator
 
 
-// Start testing custom response
-
-console.log(validator(() => errorResponse()).valid);
-console.log(validator(() => errorResponse()).error);
-
-// End custom response
-
-
-
+// Start testing cache result
+console.log(hundredTimes(1));
+console.log(hundredTimes(1));
+console.log(hundredTimes(2));
+console.log(hundredTimes(2));
+console.log(hundredTimes(1));
+// End testing cache result

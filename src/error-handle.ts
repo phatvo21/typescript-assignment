@@ -28,5 +28,5 @@ export const testRequest = (url: string): Result<any, Error> => {
       'Invalid string passed into `testRequest`. Expected a valid URL.'
     ));
   }
-  return ok('ok');
+  return ok('The URl is valid');
 };

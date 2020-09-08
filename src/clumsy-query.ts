@@ -4,16 +4,24 @@ export class ClumsyQuery {
   private createQueryBuilder: any;
 
   // This snippet below shows the adjusted.
-  // I have added async/await pattern into this function
-  // The async/await will trigger this function to become asynchronous, non-blocking.
-  // Assume that the find user by ID functionality shows as below are invoke to the database to getting the user data.
-  // But in runtime, we will never be aware of when this invoke finish.
-  // If the function performs without async/await then this snippet with certainly block the others snippets.
-  // Means like it wait for util a user data response finished before executing the others snippets. So, this is a disadvantage.
-  // Finally, I made this code with async/await and the function will become asynchronous function as show as the snippet below.
-  public async findOneById(id: number): Promise<any> {
-    return await this.createQueryBuilder('users')
+  // Inside the Promise, we need adding a type represents for data retrieve.
+  // In this case we are query user data by id.
+  // So, the Promise type should be Entity of user. The Entity are represent for database table where it's store data.
+  // And we can conclusively, this case might need to adding UserEntity type as the snippet below.
+  // If the data response won't match to the properties declare in UserEntity, each property respective to a field in user table.
+  // Then it could be throw an error.
+  public findOneById(id: number): Promise<UserEntity> {
+    return this.createQueryBuilder('users')
       .where(`users.id=${id}`)
-      .getOne();
+      .getOne().then();
   }
+}
+
+// For example: This is an UserEntity initialize following an ORM syntax
+class UserEntity {
+  public id: number;
+
+  public userName: string;
+
+  public email: string
 }

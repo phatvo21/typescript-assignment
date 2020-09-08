@@ -13,7 +13,13 @@ export class ClumsyQuery {
   public findOneById(id: number): Promise<UserEntity> {
     return this.createQueryBuilder('users')
       .where(`users.id=${id}`)
-      .getOne().then();
+      .getOne()
+      .then(res => {
+        return res;
+      })
+      .catch(err => {
+        return err;
+      })
   }
 }
 

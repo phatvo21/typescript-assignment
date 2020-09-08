@@ -1,5 +1,4 @@
 import { MyArray } from "./barebone";
-import { myFunc } from "./arrow-function";
 import {testRequest} from "./error-handle";
 import {hundredTimes} from "./cache-response";
 
@@ -24,21 +23,10 @@ const booleanAry = new MyArray();
 booleanAry.add(true);
 booleanAry.add(false);
 
-const numberAndStringMixedAry = new MyArray();
-numberAndStringMixedAry.add(1);
-numberAndStringMixedAry.add('bbb');
-
+const typeMixedAry = new MyArray();
+typeMixedAry.add(1);
+typeMixedAry.add(true);
 // End testing Barebone class
-
-
-// Start testing arrow function
-
-console.log(myFunc());
-console.log(myFunc({ firstParam: 'first', secondParam: 'second' }));
-console.log(myFunc({ firstParam: 'first' }));
-console.log(myFunc({ secondParam: 'second' }));
-
-// End testing arrow function
 
 
 // Start testing Validator

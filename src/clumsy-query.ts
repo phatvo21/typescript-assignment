@@ -10,16 +10,15 @@ export class ClumsyQuery {
   // And we can conclusively, this case might need to adding UserEntity type as the snippet below.
   // If the data response won't match to the properties declare in UserEntity, each property respective to a field in user table.
   // Then it could be throw an error.
+
+  // One the other point we need to modify WHERE clause.
+  // Invoke to user.id would be wrong, so the correct way is users.id
+  // And, Instead directly inject id param into where clause.
+  // We should using id as a parameter, this could be avoid SQL injection vulnerability.
   public findOneById(id: number): Promise<UserEntity> {
     return this.createQueryBuilder('users')
-      .where(`users.id=${id}`)
-      .getOne()
-      .then(res => {
-        return res;
-      })
-      .catch(err => {
-        return err;
-      })
+      .where("users.id = :id", { id: id })
+      .getOne();
   }
 }
 
